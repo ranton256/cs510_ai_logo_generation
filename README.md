@@ -17,6 +17,10 @@ You can edit this, put your name on one, and commit the change if you are workin
 * integration of all pieces
 * testing
 
+## Notes
+
+* Notes from getting the code from the constrained neural style transfer paper to run are at: https://gist.github.com/ranton256/61abed764dfa31821781e5d695f92893
+* 
 ## References
 
 Let's keep track of references here so we don't lose track of anything we need to cite.

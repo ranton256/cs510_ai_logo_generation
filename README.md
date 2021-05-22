@@ -24,3 +24,8 @@ You can edit this, put your name on one, and commit the change if you are workin
 ## References
 
 Let's keep track of references here so we don't lose track of anything we need to cite.
+
+* ShapeNet prerendered images dataset from https://github.com/chrischoy/3D-R2N2
+  * Rendered images from http://shapenet.cs.stanford.edu/
+  * Download images at http://cvgl.stanford.edu/data2/ShapeNetRendering.tgz
+

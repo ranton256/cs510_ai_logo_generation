@@ -2,6 +2,24 @@ import unittest
 from shapenet_loader import ShapeNetLoader
 from shapenet_loader import ScoredResult
 
+MIRROR_IMAGE_EXPECTED = [
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-0.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-10.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-11.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-12.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-13.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-1.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-2.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-3.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-4.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-5.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-6.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-7.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-8.png",
+    "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-9.png"
+]
+
+
 class ShapeNetLoaderTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -26,24 +44,13 @@ class ShapeNetLoaderTestCase(unittest.TestCase):
         self.assertEqual([ScoredResult(index=7, full_id='wss.39676deca53bdfe568bc0d099ddc0d94', score=10.0)], results)
 
     def test_get_image_paths_for_id(self):
-        expected = [
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-0.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-10.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-11.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-12.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-13.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-1.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-2.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-3.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-4.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-5.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-6.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-7.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-8.png",
-            "shapenet_unittest_data/screenshots/4b3e576378e5571aa9a81fd803d87d3e/4b3e576378e5571aa9a81fd803d87d3e-9.png"
-        ]
+
         paths = self.loader.get_image_paths_for_id("wss.4b3e576378e5571aa9a81fd803d87d3e")
-        self.assertSetEqual(set(expected), set(paths))
+        self.assertSetEqual(set(MIRROR_IMAGE_EXPECTED), set(paths))
+
+    def test_select_top_image_for_term(self):
+        chosen_image = self.loader.select_top_image_for_term("mirror")
+        self.assertIn(chosen_image, MIRROR_IMAGE_EXPECTED)
 
 
 if __name__ == '__main__':

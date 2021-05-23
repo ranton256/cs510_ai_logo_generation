@@ -1,8 +1,9 @@
+from collections import defaultdict
+from collections import namedtuple
 import pandas as pd
 import os
 import sys
-from collections import defaultdict
-from collections import namedtuple
+import random
 
 ScoredResult = namedtuple('ScoredResult', 'index, full_id, score')
 
@@ -120,16 +121,36 @@ class ShapeNetLoader:
         dir_path = self.get_dir_path_for_id(full_id)
         return list(os.path.join(dir_path, f) for f in os.listdir(dir_path) if f.endswith('.png'))
 
+    def select_top_image_for_term(self, term):
+        """Select and return one of the images from one of the highest scoring rows for a term."""
+        scored_results = self.get_scored_results_for_term(term)
+        if len(scored_results) == 0:
+            return None
+
+        # throw way everything that isn't tied for the top score.
+        top_score = scored_results[0].score
+        top_results = [sr for sr in scored_results if sr.score == top_score]
+        # select result randomly
+        chosen_result = random.choice(top_results)
+        images = self.get_image_paths_for_id(chosen_result.full_id)
+        # select image randomly
+        chosen_image = random.choice(images)
+        return chosen_image
+
 
 def main():
-    # This is a test main for playing around with the dataset."
+    # This is a test main for playing around with the dataset or using loader to select image manually.
 
-    # TODO: we should probably build a smaller subset of shapenetsem dataset to work with out of the maximum one.
+    # TODO: we might want to build a smaller subset of shapenetsem dataset to work with out of the maximum one
+    # The ZIP of the screenshots for the entire dataset is 11G.
 
-    # TODO: We need to pick an image for a term out of scored resutls.
     datadir = "shapenet"
     if len(sys.argv) > 1:
         datadir = sys.argv[1]
+
+    term = None
+    if len(sys.argv) > 2:
+        term = sys.argv[2]
 
     loader = ShapeNetLoader(datadir)
     loader.load()
@@ -156,21 +177,33 @@ def main():
     weird = [c for c in top_level if c.startswith('_')]
     print("weird: ",weird)
 
+    if not term:
+        return
 
-    print("--Chairs--")
-    chairs = loader.get_rows_for_term('chair')
-    for c in chairs:
-        print(c)
+    print("--TERM:", term)
+    rows = loader.get_rows_for_term('chair')
+    for r in rows:
+        print(r)
 
-    scored_chairs = loader.get_scored_results_for_term('chair')
-    print("sorted count", len(scored_chairs))
+    scored = loader.get_scored_results_for_term(term)
+    print("sorted count", len(scored))
     print("highest score results")
-    for r in scored_chairs[:5]:
+    for r in scored[:5]:
         print(r)
         for p in loader.get_image_paths_for_id(r.full_id):
             print(" *", p)
 
+    chosen_image = loader.select_top_image_for_term(term)
+    print("IMAGE:", chosen_image)
 
+    # this may fail, if in non visual terminal or no pillow installed
+    try:
+        from PIL import Image
+
+        image = Image.open(chosen_image)
+        image.show()
+    except Exception as ex:
+        print("Failed to show image", ex)
 
 
 if __name__ == "__main__":

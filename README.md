@@ -10,7 +10,7 @@ High level work items.
 You can edit this, put your name on one, and commit the change if you are working on it so we don't duplicate work.
 
 * type rendering
-* style transfer
+* style transfer (Mohammed)
 * noun dataset from shapenet (Richard)
 * style dataset creation
 * synonym expansion (Mohammed)

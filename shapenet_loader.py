@@ -7,6 +7,20 @@ import random
 
 ScoredResult = namedtuple('ScoredResult', 'index, full_id, score')
 
+# To use this class you need to have installed the following Python packagees
+# * Pillow
+# * Pandas
+
+# You need to download the Screenshots.zip of images from
+# http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetSem.v0/models-screenshots.zip
+# you also need to download the metadata.csv from:
+# http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetSem.v0/metadata.csv
+# create a directory, for example: "shapenet" and place metadata.csv into it, and unzip the screenshots into it.
+# pass this directory name to the shapenet_datadir of the ShapeNetLoader class constructor.
+
+# NOTE: There is additional metadata we may want according to ShapeNetSem README.txt which says:
+# "categories.synset.csv : maps manual category labels to WordNet synsets and glosses"
+
 
 class ShapeNetLoader:
     """This class is responsible for loading samples from ShapeNet dataset and other related functionality."""

@@ -1,0 +1,11 @@
+fullId,category,wnsynset,wnlemmas,up,front,unit,aligned.dims,isContainerLike,surfaceVolume,solidVolume,supportSurfaceArea,weight,staticFrictionForce,name,tags
+wss.fac5444a8b14914de047028ded406033,Bench,n2832068,bench,,,0.018121148489840304,"116.88479\,69.58122\,56.35845",,,,,,,bench,"bench,chair,furniture,seat"
+wss.1a5e21a5633e1134ebd90840d80c9784,Lamp,n3641940,lamp,,,0.05981135566000157,"53.83022\,80.2471\,53.830093",,,,,,,lamp,"japanese,lamp"
+wss.6ba3f8a4a4750534cc2e054c56e9a85a,Calculator,n2942270,"calculator,calculating machine",,,0.03891523830578539,"19.457619\,5.837286\,25.294905",,,,,,,calculator,"addition,button buttons,calculator,divide,division,minus,multiplication,multiply,number,numbers,plus,screen,subtraction"
+wss.4b3e576378e5571aa9a81fd803d87d3e,"Mirror,_StanfordSceneDBModels",n3778568,mirror,"0\,0\,1","1\,-3.845484641828989e-8\,0",0.022633450447160933,"80.348755\,109.77222\,7.355871",,,,,,,bathroom mirror,"bathroom,bathroom mirror,mirror"
+wss.a0675fad594ff671b5e44b576d6f8c5e,HandDryer,n3256469,"dryer,drier",,,,"30.226126\,66.67498\,24.635029",,,,,,,ab         v dyson airblade trade  hand dryer,"air hand dryer,airblade,dyson,dyson airblade,hand dryer,toilet room,toilet room accessories,warm air hand dryer"
+wss.ada1815c69722f5b18489d7b89e53024,,n4196525,sheet metal,,,,"0.6849491\,2.773849\,0.6780606",,,,,,,screw sheet metal     phillips     long detailed threads,"philips,phillips head,screw,sheet metal"
+wss.7170910538470c80738e43095496b061,Desk,n4615687,writing desk,,,0.03161733478288024,"113.82238\,94.35322\,70.20641",,,,,,,providence writing desk from popular woodworking magazine april,*
+wss.39676deca53bdfe568bc0d099ddc0d94,"DrinkingUtensil,_StanfordSceneDBModels,_SceneGalleryModels,Cup",,,,,0.015317040004123905,"8.74462\,21.0293\,8.74462",,,,,,,drinks gulp cup  large,"cup,drink,gulp"
+wss.adf4ac6b7a5338da2735635231ced535,_StanfordSceneDBModels,n2910059,broom,,,0.0016841262211216947,"46.10991\,13.2324505\,8.304848",,,,,,,hand broom,"hand broom,zebra pattern"
+wss.724488d30d3495145c604da6952146db,FoodItem,n2887691,"box,box seat",,,5.644639430218852E-4,"14.379725\,31.285416\,13.6992035",,,,,,,orange juice box,"box,juice,oj,orange,orange juice box,orangez"

@@ -1,0 +1,8 @@
+This directory contains a very small subset of data originally from ShapeNetSem for unit testing.
+
+For more information about ShapeNet see https://shapenet.org/about.
+
+The full dataset comes from: 
+http://shapenet.cs.stanford.edu/shapenet/obj-zip/ShapeNetSem.v0/models-screenshots.zip
+
+

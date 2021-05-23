@@ -24,11 +24,15 @@ class ShapeNetLoader:
         self.index = defaultdict(set)
 
     def load(self):
+        """Load the metadata for the shapenet dataset, and build the index dict."""
         self.metadata_df = self.read_metadata()
+        self.build_indexing_dict()
+
+    def record_count(self):
+        return self.metadata_df.shape[0]
 
     def read_metadata(self):
         metadata_df = pd.read_csv(os.path.join(self.shapenet_datadir, "metadata.csv"))
-        print(metadata_df)
         return metadata_df
 
     def all_categories(self):
@@ -42,15 +46,14 @@ class ShapeNetLoader:
     def build_indexing_dict(self):
         """Build dictionary keyed by term to set of dataframe index values for each entry."""
         for row in self.metadata_df.itertuples():
-            print(row)
             # The category, wnlemmas, tags, and name fields all have string values
             terms = set()
             fields = [row.category, row.wnlemmas, row.tags, row.name]
             for f in fields:
                 if f and isinstance(f,str):
                     parts = f.split(',')
-                    for f in parts:
-                        terms.add(f.lower())
+                    for p in parts:
+                        terms.add(p.lower().strip())
             for t in terms:
                 # TODO: skip '*'
                 idx = row.Index
@@ -58,7 +61,7 @@ class ShapeNetLoader:
 
     def get_rows_for_term(self, term):
         """Returns tuples of (index, row) that match term."""
-        indices = self.index[term]
+        indices = self.index[term.lower().strip()]
         for idx in indices:
             row = self.metadata_df.iloc[idx]
             yield (idx, row)
@@ -114,7 +117,7 @@ class ShapeNetLoader:
     def get_image_paths_for_id(self, full_id):
         """Return the list of image paths for a row in the dataset."""
         dir_path = self.get_dir_path_for_id(full_id)
-        return (os.path.join(dir_path,f) for f in os.listdir(dir_path) if f.endswith('.png'))
+        return list(os.path.join(dir_path, f) for f in os.listdir(dir_path) if f.endswith('.png'))
 
 
 def main():
@@ -152,7 +155,6 @@ def main():
     weird = [c for c in top_level if c.startswith('_')]
     print("weird: ",weird)
 
-    loader.build_indexing_dict()
 
     print("--Chairs--")
     chairs = loader.get_rows_for_term('chair')

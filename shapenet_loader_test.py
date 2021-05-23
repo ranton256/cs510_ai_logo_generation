@@ -20,9 +20,10 @@ class ShapeNetLoaderTestCase(unittest.TestCase):
 
     def test_get_scored_results_for_term(self):
         results = self.loader.get_scored_results_for_term('desk')
-        # TODO: path
-        self.assertEqual(results,[ScoredResult(index=6, full_id='wss.7170910538470c80738e43095496b061', path=None, score=25.0)])
-        print(results)
+        self.assertEqual([ScoredResult(index=6, full_id='wss.7170910538470c80738e43095496b061', score=25.0)], results)
+
+        results = self.loader.get_scored_results_for_term("gulp")
+        self.assertEqual([ScoredResult(index=7, full_id='wss.39676deca53bdfe568bc0d099ddc0d94', score=10.0)], results)
 
     def test_get_image_paths_for_id(self):
         expected = [

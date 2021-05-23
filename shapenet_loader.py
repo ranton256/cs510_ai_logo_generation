@@ -4,7 +4,7 @@ import sys
 from collections import defaultdict
 from collections import namedtuple
 
-ScoredResult = namedtuple('ScoredResult', 'index, full_id, path, score')
+ScoredResult = namedtuple('ScoredResult', 'index, full_id, score')
 
 
 class ShapeNetLoader:
@@ -55,7 +55,9 @@ class ShapeNetLoader:
                     for p in parts:
                         terms.add(p.lower().strip())
             for t in terms:
-                # TODO: skip '*'
+                # skip '*' values, not sure what these are intended to convey.
+                if t == '*':
+                    continue
                 idx = row.Index
                 self.index[t].add(idx)
 
@@ -79,13 +81,13 @@ class ShapeNetLoader:
 
         for z in zip(fields, match_points, contain_points):
             f, mp, cp = z
-
             if f and isinstance(f, str):
+                f = f.lower().strip()
                 if f == lt:
                     score = score + mp
                 else:
                     parts = f.split(',')
-                    if f in parts:
+                    if lt in parts:
                         score = score + cp
         return score
 
@@ -98,8 +100,7 @@ class ShapeNetLoader:
         results = []
         for (idx, row) in rows:
             score = ShapeNetLoader.score_row_for_term(row, term)
-            path = None  # TODO: path
-            results.append(ScoredResult(index=idx, full_id=row.fullId, path=path, score=score))
+            results.append(ScoredResult(index=idx, full_id=row.fullId, score=score))
         # sort first on secondary key so order is deterministic for things with tied score.
         s = sorted(results, reverse=True, key=lambda sr: sr.full_id)
         # sort again on primary key

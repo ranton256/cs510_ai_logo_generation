@@ -28,4 +28,14 @@ Let's keep track of references here so we don't lose track of anything we need t
 * ShapeNet prerendered images dataset from https://github.com/chrischoy/3D-R2N2
   * Rendered images from http://shapenet.cs.stanford.edu/
   * Download images at http://cvgl.stanford.edu/data2/ShapeNetRendering.tgz
+ 
+ shapenet latex citation source
+ ```latex
+@article{savva2015semgeo,
+	title={{Semantically-Enriched 3D Models for Common-sense Knowledge}},
+	author={Manolis Savva and Angel X. Chang and Pat Hanrahan},
+	journal = {CVPR 2015 Workshop on Functionality, Physics, Intentionality and Causality},
+	year = {2015}
+} 
+```
 

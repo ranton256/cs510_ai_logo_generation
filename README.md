@@ -13,7 +13,7 @@ You can edit this, put your name on one, and commit the change if you are workin
 * style transfer (Mohammed)
 * noun dataset from shapenet (Richard)
 * style dataset creation
-* s̶y̶n̶o̶n̶y̶m̶ e̶x̶p̶a̶n̶s̶i̶o̶n̶ (̶M̶o̶h̶a̶m̶m̶e̶d̶)̶
+* synonym expansion (Mohammed) (Done)
 * integration of all pieces
 * testing
 

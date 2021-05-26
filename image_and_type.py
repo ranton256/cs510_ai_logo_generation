@@ -2,6 +2,8 @@ from PIL import Image, ImageFont, ImageDraw
 import os
 import argparse
 
+from numpy.core.fromnumeric import resize
+
 '''
 Create a logo by combining an imagr with text
 
@@ -27,6 +29,7 @@ Optional parameters:
 --alignright: flag to align the tedt and image to the right
 --aligncenter: flag to denter text and image; if no alignment flag is selected,
     this is the default
+--resize widthxheight (str): if we want to resize the image, enter the dimentions with an x
 '''
 
 
@@ -219,6 +222,7 @@ if __name__ == '__main__':
     parser.add_argument('--alignleft', help='Align image to the left of the text', action='store_true')
     parser.add_argument('--alignright', help='Align image to the right of the text', action='store_true')
     parser.add_argument('--aligncenter', help='Center image and text', action='store_true')
+    parser.add_argument('--resize', type=str, help='widthxheight', default=None)
     args = parser.parse_args()
 
     # Cast inputs as needed
@@ -228,6 +232,7 @@ if __name__ == '__main__':
     text_spacing = int(args.textspacing)
     text_color = args.textcolor.split(',')
     text_color = (int(text_color[0]), int(text_color[1]), int(text_color[2]))
+    image_size = 300
     
     # --text and --image are the two required arguments; if we don't have one or 
     #   the other, we print an error message and exit the program
@@ -245,9 +250,17 @@ if __name__ == '__main__':
         exit()
 
     # Load the image and resize it; exit if there's an error
+    print(args.image)
     try:
         source_image = Image.open(args.image)
-        source_image.thumbnail((500, 500))
+        if args.resize is not None:
+            resize_width, resize_height = args.resize.split('x')
+            resize_width, resize_height = int(resize_width), int(resize_height)
+            print(resize_width, resize_height)
+            source_image = source_image.resize((resize_width, resize_height))
+            #source_image.resize((resize_width, resize_height))
+        else:
+            source_image.thumbnail((image_size, image_size))
     except:
         print('Error loading image.')
         exit()

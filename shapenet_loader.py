@@ -76,6 +76,10 @@ class ShapeNetLoader:
                 idx = row.Index
                 self.index[t].add(idx)
 
+    def all_terms(self):
+        for k in self.index.keys():
+            yield k
+
     def get_rows_for_term(self, term):
         """Returns tuples of (index, row) that match term."""
         indices = self.index[term.lower().strip()]
@@ -121,13 +125,16 @@ class ShapeNetLoader:
         # sort again on primary key
         return sorted(results, reverse=True, key=lambda sr: sr.score)
 
-    def get_dir_path_for_id(self, full_id):
-        """Return the directory of screenshots for a row in the dataset."""
+    def get_id_dir_name(self, full_id):
         parts = full_id.split('.')
         if len(parts) < 2:
             # TODO: print warning about weird id
             return []
-        id_dir_name = parts[1]
+        return parts[1]
+
+    def get_dir_path_for_id(self, full_id):
+        """Return the directory of screenshots for a row in the dataset."""
+        id_dir_name = self.get_id_dir_name(full_id)
         return os.path.join(self.shapenet_datadir, "screenshots", id_dir_name)
 
     def get_image_paths_for_id(self, full_id):

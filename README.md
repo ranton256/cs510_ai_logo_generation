@@ -11,7 +11,7 @@ You can edit this, put your name on one, and commit the change if you are workin
 
 * type rendering (Bernardo)
 * style transfer (Bernardo)
-* noun dataset from shapenet (Richard)
+* noun dataset from shapenet (Done)
 * style dataset creation (Mohammed)
 * synonym expansion (Mohammed) (Done)
 * integration of all pieces

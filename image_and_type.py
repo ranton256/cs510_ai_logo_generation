@@ -78,7 +78,10 @@ def render_text_stacked(img, font, text,  color=(255, 255, 255), top=None, verti
     '''
     draw = ImageDraw.Draw(img)
     widths = []
-    words = text.split(' ')
+    if '\\' in text:
+        words = text.split('\\')
+    else:
+        words = text.split(' ')
     image_width, image_height = img.size
     for word in words:
         text_width, text_height = draw.textsize(word, font)
@@ -146,7 +149,10 @@ def calculate_text_size_stacked(font, text, vertical_spacing = 10):
     txt = Image.new("RGB", (10, 10), (255,255,255,0))
     draw = ImageDraw.Draw(txt)
     widths = []
-    words = text.split(' ')
+    if '\\' in text:
+        words = text.split('\\')
+    else:
+        words = text.split(' ')
     for word in words:
         text_width, text_height = draw.textsize(word, font)
         widths.append(text_width)
@@ -250,19 +256,18 @@ if __name__ == '__main__':
         exit()
 
     # Load the image and resize it; exit if there's an error
-    print(args.image)
     try:
-        source_image = Image.open(args.image)
+        get_image = args.image
+        source_image = Image.open(get_image)
         if args.resize is not None:
             resize_width, resize_height = args.resize.split('x')
             resize_width, resize_height = int(resize_width), int(resize_height)
-            print(resize_width, resize_height)
             source_image = source_image.resize((resize_width, resize_height))
             #source_image.resize((resize_width, resize_height))
         else:
             source_image.thumbnail((image_size, image_size))
     except:
-        print('Error loading image.')
+        print('Error loading image--.')
         exit()
 
     # Pick the right font and create a font object to render the text
@@ -292,4 +297,6 @@ if __name__ == '__main__':
     text_top = padding + source_image_height + spacer
     render_text(logo, font, args.text, text_color, text_top, text_spacing, padding, args.alignleft, args.alignright, args.stacked)
 
-    logo.save(args.saveto)
+    saveto = 'logos/' + args.saveto
+    print(saveto)
+    logo.save(saveto)

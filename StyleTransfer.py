@@ -215,8 +215,10 @@ if __name__ == '__main__':
         with tf.Session() as sess:          
 
             # Load images.
-            content_image = utility.load_image(CONTENT_IMAGE, IMAGE_HEIGHT, IMAGE_WIDTH, invert = content_invert)
-            style_image   = utility.load_image(STYLE_IMAGE, IMAGE_HEIGHT, IMAGE_WIDTH, invert = style_invert)
+            content_source = f'input/{CONTENT_IMAGE}'
+            style_source = 'input/' + STYLE_IMAGE
+            content_image = utility.load_image(content_source, IMAGE_HEIGHT, IMAGE_WIDTH, invert = content_invert)
+            style_image   = utility.load_image(style_source, IMAGE_HEIGHT, IMAGE_WIDTH, invert = style_invert)
             # utility.save_image(OUTPUT_DIR+"/"+style_name+".png", style_image, invert = style_invert)
             
             # Load the model.

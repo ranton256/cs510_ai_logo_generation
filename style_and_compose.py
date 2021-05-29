@@ -2,6 +2,20 @@ import os
 from PIL import Image
 import argparse
 
+'''
+Run this program.
+
+Source images should be in 'input/'
+Output logos will go to 'logos/'
+
+When entering the file names, don't include 'input/' or 'output/'
+
+Minumum usage: python style_and_compose.py --CONTENT_IMAGE content_image_filename --STYLE_IMAGE style_image_filename --text "Text for Logo"
+With the above usage, the source image will be re-written with a cropped version of itself and the logo will be saved as new_logo.jpg
+
+Recommended minumum usage: python style_and_compose.py --CONTENT_IMAGE content_image_filename --STYLE_IMAGE style_image_filename --text "Text for Logo" --CROPPED_IMAGE filename_to_save_cropped_image --saveto save_to_file_name
+The above will keep the original source image and will saved a new, cropped version, and will customize the name of the resulting logo
+'''
 
 parser = argparse.ArgumentParser(description='A Neural Algorithm of Artistic Style')
 # Args for style transfer
@@ -13,6 +27,7 @@ parser.add_argument('--w5', '-w5',type=float, default='1',help='w5')
 parser.add_argument("--IMAGE_WIDTH", "-width",type=int, default = 400, help = "width & height of image")
 parser.add_argument("--CONTENT_IMAGE", "-CONTENT_IMAGE", type=str, help = "Path to content image")
 parser.add_argument("--STYLE_IMAGE", "-STYLE_IMAGE", type=str, help = "Path to style image")
+parser.add_argument("--CROPPED_IMAGE", "-CROPPED_IMAGE", type=str, help = "Path to content image", default="empty")
 parser.add_argument("--GPU", "-GPU", help="Use GPU", action="store_true")
 parser.add_argument("--alpha",  "-alpha",type=float,  default="0.001",   help="alpha")
 parser.add_argument("--beta",   "-beta", type=float,  default="0.8",     help="beta")
@@ -47,6 +62,15 @@ args = parser.parse_args()
 # source_size = source_image.size
 # source_image_width, source_image_height = source_image.size
 # EDIT: Made it 500 x 500 to make it a bit bigger
+crop_image = f'python crop_image.py --CONTENT_IMAGE {args.CONTENT_IMAGE} --CROPPED_IMAGE {args.CROPPED_IMAGE}'
+
+os.system(crop_image)
+
+
+if args.CROPPED_IMAGE != 'empty':
+    args.CONTENT_IMAGE = args.CROPPED_IMAGE
+
+
 args.IMAGE_WIDTH = 300
 
 
@@ -62,8 +86,6 @@ os.system(style_transfer_commands)
 CONTENT_IMAGE = args.CONTENT_IMAGE
 STYLE_IMAGE = args.STYLE_IMAGE
 
-CONTENT_IMAGE = 'cat.jpg'
-STYLE_IMAGE = 'zebra.jpg'
 # Splitting content path & name
 dot = 0
 slash = 0
@@ -96,7 +118,6 @@ OUTPUT_DIR = ("output/" + content_name + "_vs_" + style_name)
 f = []
 for (dirpath, dirnames, filenames) in os.walk(OUTPUT_DIR):
     f.extend(filenames)
-print(OUTPUT_DIR)
 print(f)
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 for item in f:
@@ -105,7 +126,7 @@ for item in f:
 f.sort(key = lambda w: int(w[0:-4]))
 image_path = os.path.join(OUTPUT_DIR, f[-1])
 try:
-    source_image = Image.open(CONTENT_IMAGE)
+    source_image = Image.open('input/' + CONTENT_IMAGE)
     source_image.thumbnail((args.IMAGE_WIDTH, args.IMAGE_WIDTH))
     resize_width, resize_height = source_image.size
 except:

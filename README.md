@@ -12,8 +12,9 @@ You can edit this, put your name on one, and commit the change if you are workin
 * type rendering (Bernardo)
 * style transfer (Bernardo)
 * noun dataset from shapenet (Done)
-* style dataset creation (Mohammed)
-* synonym expansion (Mohammed) (Done)
+* style dataset creation (Done)
+* synonym expansion (Done)
+* Create UI prototype (Mohammed)
 * integration of all pieces
 * testing
 

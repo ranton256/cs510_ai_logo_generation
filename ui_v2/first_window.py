@@ -60,26 +60,32 @@ class Ui_Dialog(object):
 
     def get_terms(self, terms):
         noun_imgs_list = self.check_terms(terms)
-        files = [entry for entry in os.scandir("images/") if entry.is_file()]
-        exist = False
-        for f in files:
-            if self.term_list[0] in os.path.join(f) and noun_imgs_list:
-                exist = True
-                self.dialog.hide()
-                self.main_window_1 = QtWidgets.QMainWindow()
-                self.second_ui = Ui_MainWindow()
-                self.second_ui.setupUi(self.main_window_1, noun_imgs_list)
-                self.main_window_1.show()
+        if noun_imgs_list:
+            files = [entry for entry in os.scandir("images/") if entry.is_file()]
+            exist = False
+            for f in files:
+                if self.term_list[0] in os.path.join(f) and noun_imgs_list:
+                    exist = True
+                    self.dialog.hide()
+                    self.main_window_1 = QtWidgets.QMainWindow()
+                    self.second_ui = Ui_MainWindow()
+                    self.second_ui.setupUi(self.main_window_1, noun_imgs_list)
+                    self.main_window_1.show()
 
-        if not exist:
-            error_dialog = QtWidgets.QErrorMessage()
-            error_dialog.showMessage('No Synonym found for the noun (content) word or adjective (style) word. Please enter another list of terms.')
-            error_dialog.exec_()
+            if not exist:
+                error_dialog = QtWidgets.QErrorMessage()
+                error_dialog.showMessage('No Synonym found for the noun (content) word or adjective (style) word. Please enter another list of terms.')
+                error_dialog.exec_()
 
 
     def check_terms(self, terms):
         datadir = "shapenet"
         self.term_list = terms.split(" ")
+        if len(self.term_list) < 2:
+            error_dialog = QtWidgets.QErrorMessage()
+            error_dialog.showMessage('Please enter two terms.')
+            error_dialog.exec_()
+            return None
         loader = ShapeNetLoader(datadir)
         loader.load()
         scored = loader.get_scored_results_for_term(self.term_list[1])

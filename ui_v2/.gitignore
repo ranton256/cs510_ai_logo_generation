@@ -2,3 +2,4 @@ shapenet
 output
 logos
 __pycache__
+imagenet-vgg-verydeep-19.mat

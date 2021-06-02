@@ -18,7 +18,7 @@ else:
 
 try:
     source_image = Image.open(image_name)
-    white_background = Image.new('RGBA', source_image.size, (255, 255, 255))
+    white_background = Image.new('RGBA', source_image.size, (255,255,255))
     source_image = Image.alpha_composite(white_background, source_image)
     source_image = source_image.convert('RGB')
     invert_image = source_image.convert('RGB')
@@ -26,7 +26,6 @@ try:
     trim_box = invert_image.getbbox()
     source_image = source_image.crop(trim_box)
     source_image.save(saved_image)
-except Exception as e:
+except:
     print('Error loading image.')
-    print(e)
     exit()

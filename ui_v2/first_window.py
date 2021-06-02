@@ -63,14 +63,18 @@ class Ui_Dialog(object):
         if noun_imgs_list:
             files = [entry for entry in os.scandir("images/") if entry.is_file()]
             exist = False
-            for f in files:
-                if self.term_list[0] in os.path.join(f) and noun_imgs_list:
-                    exist = True
-                    self.dialog.hide()
-                    self.main_window_1 = QtWidgets.QMainWindow()
-                    self.second_ui = Ui_MainWindow()
-                    self.second_ui.setupUi(self.main_window_1, noun_imgs_list)
-                    self.main_window_1.show()
+            term0 = self.term_list[0].lower()
+
+            if noun_imgs_list:
+                for f in files:
+                    p = os.path.join(f).lower()
+                    if self.term_list[0] in p:
+                        exist = True
+                        self.dialog.hide()
+                        self.main_window_1 = QtWidgets.QMainWindow()
+                        self.second_ui = Ui_MainWindow()
+                        self.second_ui.setupUi(self.main_window_1, noun_imgs_list)
+                        self.main_window_1.show()
 
             if not exist:
                 error_dialog = QtWidgets.QErrorMessage()

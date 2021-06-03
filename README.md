@@ -24,19 +24,19 @@ You can edit this, put your name on one, and commit the change if you are workin
 * 
 ## References
 
-Let's keep track of references here so we don't lose track of anything we need to cite.
+* Agustsson, E.; Sage, A.; Timofte; Van Gool, L. 2017. Logo Synthesis and Manipulation with Clustered Generative Adversarial Networks. Ithaca, NY: Cornell University. arXiv:1712.04407v1.
+* Atarsaikhan, G.; Iwana, B.K.; and Uchida, S. 2018. Constrained Neural Style Transfer for Decorated Logo Generation. Ithaca, NY: Cornell University. arXiv:1803.00686v2.
+* Bethge, M; Ecker, A.S.; and Gatys, A.L. 2016. A Neural Algorithm of Artistic Style. Journal of Vision 16(12): 326-. arXiv:1508.06576v2.
+* Birdsall, C, 2008. Corporate Identity. The Essential Principles of Graphic Design. Edited by Debbie Millman. Cincinnati, Ohio: How Books.
+* Chang, A, et al, 2015. ShapeNet: An Information-Rich 3D Model Repository. Stanford University --- Princeton University --- Toyota Technological Institute at Chicago.
+* Chang A.; Hanrahan, P; Savva, M. 2015. Semantically-Enriched 3D Models for Common-sense Knowledge. CVPR 2015 Workshop on Functionality, Physics, Intentionality and Causality.
+* Fellbaum, C. 1998. WordNet: An Electronic Lexical Database. Cambridge, MA: MIT Press
+* Ginger, E.M., and Spiekermann, E. 2003. Stop Stealing Sheep & Find Out How Type Works. Berkeley, California: Peachpit Press.
+* Mino, A., and Spanakis, G. 2018. LoGAN: Generating Logos with a Generative Adversarial Neural Network Conditioned on Color. In proceedings of the 17th IEEE International Conference on Machine Learning and Applications. arXiv:1810.10395v1.
+* Napoles, V, 1988.Corporate Identity Design. New York: John Wiley & Sons, Inc.
+Oeldorf, Cedric and Spanakis, Gerasimos. (2019). LoGANv2: Conditional Style-Based Logo Generation with Generative Adversarial Networks. 462-468. 10.1109/ICMLA.2019.00086.
+* Russakovsky, O, et al, 2015. ImageNet Large Scale Visual Recognition Challenge. International Journal of Computer Vision (IJCV) 115(3): 211-252. 10.1007/s11263-015-0816-y
+* Wheeler, A. 2003. Designing Brand Identity. Hoboken, New Jersey: John Wiley & Sons. 
 
-* ShapeNet prerendered images dataset from https://github.com/chrischoy/3D-R2N2
-  * Rendered images from http://shapenet.cs.stanford.edu/
-  * Download images at http://cvgl.stanford.edu/data2/ShapeNetRendering.tgz
- 
- shapenet latex citation source
- ```latex
-@article{savva2015semgeo,
-	title={{Semantically-Enriched 3D Models for Common-sense Knowledge}},
-	author={Manolis Savva and Angel X. Chang and Pat Hanrahan},
-	journal = {CVPR 2015 Workshop on Functionality, Physics, Intentionality and Causality},
-	year = {2015}
-} 
-```
+
 

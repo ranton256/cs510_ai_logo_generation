@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# This code is from https://github.com/gttugsuu/Constrained-Neural-Style-Transfer-for-Decorated-Logo-Generation/
+# See cnst_LICENSE.txt and cnst_README.txt
+
 """
 Created on Fri Sep 22 20:59:50 2017
 

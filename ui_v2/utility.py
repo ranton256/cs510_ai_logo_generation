@@ -1,3 +1,6 @@
+# This code is from https://github.com/gttugsuu/Constrained-Neural-Style-Transfer-for-Decorated-Logo-Generation/
+# See cnst_LICENSE.txt and cnst_README.txt
+
 import os
 
 import numpy as np

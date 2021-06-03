@@ -14,9 +14,9 @@ You can edit this, put your name on one, and commit the change if you are workin
 * noun dataset from shapenet (Done)
 * style dataset creation (Done)
 * synonym expansion (Done)
-* Create UI prototype (Mohammed)
-* integration of all pieces
-* testing
+* Create UI prototype (Done)
+* integration of all pieces (Done)
+* testing (Done)
 
 ## Notes
 
